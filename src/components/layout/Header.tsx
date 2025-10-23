@@ -36,6 +36,9 @@ export const Header = () => {
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-4 mt-6">
+                <Link to="/learn" className="text-foreground hover:text-primary transition-colors py-2">
+                  Learn
+                </Link>
                 <Link to="/settings" className="text-foreground hover:text-primary transition-colors py-2">
                   Settings
                 </Link>

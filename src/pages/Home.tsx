@@ -1,11 +1,48 @@
 import { MobileLayout } from "@/components/layout/MobileLayout";
 import { Card } from "@/components/ui/card";
 import { Droplet, TrendingDown, Target } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
+const awarenessMessages = [
+  "Cut down oil, lift up health 💪",
+  "Try mustard oil instead of palm oil 🌿",
+  "Small changes, big health benefits 🌟",
+  "Your heart thanks you for less oil ❤️",
+];
 
 const Home = () => {
   return (
     <MobileLayout>
       <div className="space-y-6">
+        {/* Awareness Carousel */}
+        <div className="relative px-2">
+          <Carousel className="w-full" opts={{ loop: true }}>
+            <CarouselContent>
+              {awarenessMessages.map((message, index) => (
+                <CarouselItem key={index}>
+                  <Card className="bg-gradient-to-br from-primary/20 to-primary/5 border-primary/30 p-6 text-center">
+                    <p className="text-lg font-semibold text-foreground">{message}</p>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0" />
+            <CarouselNext className="right-0" />
+          </Carousel>
+        </div>
+
+        {/* Daily Summary */}
+        <Card className="bg-gradient-to-br from-secondary/20 to-secondary/5 border-secondary/30 p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground mb-1">Today's Summary</p>
+              <p className="text-3xl font-bold text-foreground">20ml</p>
+              <p className="text-sm text-muted-foreground mt-1">Oil used so far</p>
+            </div>
+            <div className="text-5xl">🥗</div>
+          </div>
+        </Card>
+
         {/* Welcome Section */}
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Welcome Asha 👋</h1>

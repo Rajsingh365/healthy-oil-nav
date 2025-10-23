@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Tracker from "./pages/Tracker";
 import Rewards from "./pages/Rewards";
 import Profile from "./pages/Profile";
+import Learn from "./pages/Learn";
 import Settings from "./pages/Settings";
 import About from "./pages/About";
 import Help from "./pages/Help";
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/tracker" element={<Tracker />} />
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/learn" element={<Learn />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/about" element={<About />} />
             <Route path="/help" element={<Help />} />
