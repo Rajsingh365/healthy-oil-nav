@@ -14,16 +14,17 @@ import Profile from "./pages/user/Profile";
 import Streaks from "./pages/user/Streaks";
 import Learn from "./pages/user/Learn";
 import Settings from "./pages/user/Settings";
-import Partnerships from "./pages/user/Partnerships";
+import FindRestaurants from "./pages/user/FindRestaurants";
 import PolicyDashboard from "./pages/PolicyDashboard";
 import PolicyAnalytics from "./pages/policy/PolicyAnalytics";
 import PolicyReports from "./pages/policy/PolicyReports";
 import PolicyInsights from "./pages/policy/PolicyInsights";
+import PolicyAnalyticsInsights from "./pages/policy/PolicyAnalyticsInsights";
+import PolicyCertificationReview from "./pages/policy/PolicyCertificationReview";
 import CampaignManagement from "./pages/policy/CampaignManagement";
 import ImpactReports from "./pages/policy/ImpactReports";
 import PartnerOverview from "./pages/partner/PartnerOverview";
 import PartnerCertification from "./pages/partner/PartnerCertification";
-import PartnerSelfAudit from "./pages/partner/PartnerSelfAudit";
 import PartnerRewards from "./pages/partner/PartnerRewards";
 import PartnerMenuLabeling from "./pages/partner/PartnerMenuLabeling";
 import PartnerSelfAuditDashboard from "./pages/partner/PartnerSelfAuditDashboard";
@@ -132,10 +133,19 @@ const App = () => (
                   }
                 />
                 <Route
+                  path="/find-restaurants"
+                  element={
+                    <ProtectedRoute>
+                      <FindRestaurants />
+                    </ProtectedRoute>
+                  }
+                />
+                {/* Backward compatibility for old path */}
+                <Route
                   path="/partnerships"
                   element={
                     <ProtectedRoute>
-                      <Partnerships />
+                      <FindRestaurants />
                     </ProtectedRoute>
                   }
                 />
@@ -172,10 +182,26 @@ const App = () => (
                   }
                 />
                 <Route
+                  path="/policy-analytics-insights"
+                  element={
+                    <ProtectedRoute>
+                      <PolicyAnalyticsInsights />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
                   path="/policy-campaigns"
                   element={
                     <ProtectedRoute>
                       <CampaignManagement />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/policy-certifications"
+                  element={
+                    <ProtectedRoute>
+                      <PolicyCertificationReview />
                     </ProtectedRoute>
                   }
                 />
@@ -200,14 +226,6 @@ const App = () => (
                   element={
                     <ProtectedRoute>
                       <PartnerCertification />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/partner-self-audit"
-                  element={
-                    <ProtectedRoute>
-                      <PartnerSelfAudit />
                     </ProtectedRoute>
                   }
                 />

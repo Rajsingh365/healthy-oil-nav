@@ -1,13 +1,19 @@
-import { BarChart3, TrendingUp, FileText, Users, Target } from "lucide-react";
+import {
+  BarChart3,
+  LineChart,
+  Target,
+  Sparkles,
+  BadgeCheck,
+} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { icon: BarChart3, label: "Dashboard", path: "/policy-dashboard" },
-  { icon: TrendingUp, label: "Analytics", path: "/policy-analytics" },
-  { icon: FileText, label: "Reports", path: "/policy-reports" },
-  { icon: Users, label: "Insights", path: "/policy-insights" },
+  { icon: LineChart, label: "Analytics", path: "/policy-analytics-insights" },
+  { icon: BadgeCheck, label: "Certs", path: "/policy-certifications" },
   { icon: Target, label: "Campaigns", path: "/policy-campaigns" },
+  { icon: Sparkles, label: "Impact", path: "/policy-impact" },
 ];
 
 export const PolicyBottomNav = () => {
@@ -26,14 +32,16 @@ export const PolicyBottomNav = () => {
                 key={item.path}
                 to={item.path}
                 className={cn(
-                  "flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg min-w-[60px] transition-all",
+                  "flex flex-col items-center justify-center gap-0.5 px-2 py-2 rounded-lg flex-1 max-w-[80px] transition-all",
                   isActive
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 <Icon className={cn("h-5 w-5", isActive && "scale-110")} />
-                <span className="text-xs font-medium">{item.label}</span>
+                <span className="text-[10px] font-medium leading-tight text-center">
+                  {item.label}
+                </span>
               </Link>
             );
           })}

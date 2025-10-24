@@ -63,7 +63,7 @@ export default function PartnerOverview() {
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-0 text-2xl font-semibold">
-              92%
+              66.67%
             </CardContent>
           </Card>
         </div>
@@ -74,8 +74,11 @@ export default function PartnerOverview() {
           </CardHeader>
           <CardContent className="space-y-3">
             {stores.map((s) => (
-              <div key={s.name} className="flex items-center justify-between">
-                <div>
+              <div
+                key={s.name}
+                className="flex items-center justify-between gap-2"
+              >
+                <div className="flex-1 min-w-0">
                   <div className="font-medium">{s.name}</div>
                   <div className="text-xs text-muted-foreground">
                     {s.city} • Next audit: {s.nextAudit}
@@ -83,6 +86,7 @@ export default function PartnerOverview() {
                 </div>
                 <Badge
                   variant={s.status === "Compliant" ? "default" : "secondary"}
+                  className="shrink-0"
                 >
                   {s.status}
                 </Badge>

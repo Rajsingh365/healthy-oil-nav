@@ -1,19 +1,14 @@
 import { PolicyMobileLayout } from "@/components/layout/PolicyMobileLayout";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-} from "recharts";
-import { TrendingUp, TrendingDown, Users, MapPin } from "lucide-react";
+  TrendingUp,
+  TrendingDown,
+  MapPin,
+  BarChart3,
+  LineChart,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const PolicyDashboard = () => {
@@ -55,20 +50,15 @@ const PolicyDashboard = () => {
     { name: "Karnataka", value: 35, color: "#ff7c7c" },
   ];
 
-  const timeSeriesData = [
-    { month: "Jan", consumption: 42 },
-    { month: "Feb", consumption: 38 },
-    { month: "Mar", consumption: 45 },
-    { month: "Apr", consumption: 41 },
-    { month: "May", consumption: 39 },
-    { month: "Jun", consumption: 36 },
-  ];
+  // Removed monthly time series data as bar chart is no longer shown
 
   return (
     <PolicyMobileLayout>
       <div className="space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold">📊 Policy Dashboard</h1>
+          <h1 className="text-2xl font-bold flex items-center justify-center gap-2">
+            <BarChart3 className="h-6 w-6 text-primary" /> Policy Dashboard
+          </h1>
           <p className="text-muted-foreground">
             Real-time oil consumption analytics across Indian states
           </p>
@@ -91,29 +81,7 @@ const PolicyDashboard = () => {
           </Card>
         </motion.div>
 
-        {/* State-wise Consumption Chart */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <Card className="p-4">
-            <h3 className="text-lg font-semibold mb-4">
-              Oil Consumption by State
-            </h3>
-            <div className="h-64 w-full overflow-x-auto">
-              <ResponsiveContainer width="100%" height="100%" minWidth={300}>
-                <BarChart data={stateData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="state" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="consumption" fill="#8884d8" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </Card>
-        </motion.div>
+        {/* State-wise Consumption Chart removed as per request */}
 
         {/* Distribution Pie Chart */}
         <motion.div
@@ -134,13 +102,12 @@ const PolicyDashboard = () => {
                     cy="50%"
                     outerRadius={80}
                     dataKey="value"
-                    label={({ name, value }) => `${name}: ${value}ml`}
                   >
                     {pieData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip />
+                  <Legend wrapperStyle={{ fontSize: 12 }} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -161,7 +128,6 @@ const PolicyDashboard = () => {
                   <tr className="border-b border-border">
                     <th className="text-left py-2">State</th>
                     <th className="text-right py-2">Consumption (ml)</th>
-                    <th className="text-right py-2">Population (Cr)</th>
                     <th className="text-center py-2">Trend</th>
                   </tr>
                 </thead>
@@ -182,9 +148,6 @@ const PolicyDashboard = () => {
                       </td>
                       <td className="text-right py-3 font-medium">
                         {state.consumption}ml
-                      </td>
-                      <td className="text-right py-3 text-muted-foreground">
-                        {state.population}Cr
                       </td>
                       <td className="text-center py-3">
                         <div className="flex items-center justify-center gap-1">
@@ -213,27 +176,7 @@ const PolicyDashboard = () => {
           </Card>
         </motion.div>
 
-        {/* Time Series Trend */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Card className="p-4">
-            <h3 className="text-lg font-semibold mb-4">Monthly Trend</h3>
-            <div className="h-48 w-full overflow-x-auto">
-              <ResponsiveContainer width="100%" height="100%" minWidth={400}>
-                <BarChart data={timeSeriesData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="consumption" fill="#82ca9d" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </Card>
-        </motion.div>
+        {/* Monthly trend bar chart removed as per request */}
 
         {/* Insights */}
         <motion.div
@@ -242,8 +185,8 @@ const PolicyDashboard = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
         >
           <Card className="p-4 bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-800">
-            <h3 className="text-lg font-semibold mb-3 text-blue-700 dark:text-blue-300">
-              📈 Key Insights
+            <h3 className="text-lg font-semibold mb-3 text-blue-700 dark:text-blue-300 flex items-center gap-2">
+              <LineChart className="h-5 w-5" /> Key Insights
             </h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-start gap-2">

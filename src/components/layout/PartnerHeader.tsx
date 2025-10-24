@@ -9,7 +9,6 @@ import {
   Home,
   BadgeCheck,
   ClipboardCheck,
-  Award,
   HelpCircle,
   Info,
   Settings,
@@ -101,16 +100,10 @@ export const PartnerHeader = () => {
               label="Certification"
             />
             <MenuItem
-              to="/partner-self-audit"
-              icon={ClipboardCheck}
-              label="Self-Audit"
-            />
-            <MenuItem
               to="/partner-audit-dashboard"
               icon={BarChart3}
               label="Audit Dashboard"
             />
-            <MenuItem to="/partner-rewards" icon={Award} label="Rewards" />
             <MenuItem
               to="/partner-menu"
               icon={Utensils}
@@ -120,7 +113,7 @@ export const PartnerHeader = () => {
             <div className="my-2 border-t" />
 
             <MenuItem to="/about" icon={Info} label="About" />
-            <MenuItem to="/help" icon={HelpCircle} label="Help" />
+            {/* <MenuItem to="/help" icon={HelpCircle} label="Help" /> */}
             <MenuItem to="/settings" icon={Settings} label="Settings" />
 
             <button

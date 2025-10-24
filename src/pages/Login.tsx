@@ -13,8 +13,8 @@ type StoredUser = {
 };
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("sanjay.policy@example.com");
+  const [password, setPassword] = useState("policy123");
   const { login, users, seedDemoUsers } = useUser();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
