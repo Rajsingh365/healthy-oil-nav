@@ -1,10 +1,11 @@
-import { Home, BarChart3, Award, User } from "lucide-react";
+import { Home, Bot, Award, User,BarChart3 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { icon: Home, label: "Home", path: "/" },
   { icon: BarChart3, label: "Tracker", path: "/tracker" },
+  { icon: Bot, label: "Coach", path: "/coach" },
   { icon: Award, label: "Rewards", path: "/rewards" },
   { icon: User, label: "Profile", path: "/profile" },
 ];
@@ -19,7 +20,7 @@ export const BottomNav = () => {
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
-            
+
             return (
               <Link
                 key={item.path}

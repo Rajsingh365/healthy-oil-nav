@@ -30,9 +30,9 @@ const healthTips = [
 const Tracker = () => {
   const { toast } = useToast();
   const [entries, setEntries] = useState([
-    { id: 1, user: "Asha", oilType: "Mustard Oil", amount: 50, date: "2025-10-23", time: "7:30 AM" },
-    { id: 2, user: "Rohan", oilType: "Sunflower Oil", amount: 75, date: "2025-10-22", time: "8:15 PM" },
-    { id: 3, user: "Meena", oilType: "Olive Oil", amount: 40, date: "2025-10-22", time: "1:20 PM" },
+    { id: 1, oilType: "Mustard Oil", amount: 50, date: "2025-10-23", time: "7:30 AM" },
+    { id: 2, oilType: "Sunflower Oil", amount: 75, date: "2025-10-22", time: "8:15 PM" },
+    { id: 3, oilType: "Olive Oil", amount: 40, date: "2025-10-22", time: "1:20 PM" },
   ]);
 
   const [formData, setFormData] = useState({
@@ -65,7 +65,6 @@ const Tracker = () => {
 
     const newEntry = {
       id: entries.length + 1,
-      user: "Asha",
       oilType: formData.oilType,
       amount: parseInt(formData.quantity),
       date: formData.date,
@@ -203,7 +202,7 @@ const Tracker = () => {
                 <CardContent className="p-4">
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="font-medium">{entry.user} - {entry.oilType}</p>
+                      <p className="font-medium">{entry.oilType}</p>
                       <p className="text-xs text-muted-foreground">{entry.date} at {entry.time}</p>
                     </div>
                     <p className="font-semibold text-primary text-lg">{entry.amount}ml</p>
