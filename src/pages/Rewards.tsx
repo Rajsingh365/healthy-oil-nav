@@ -7,12 +7,12 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { usePoints } from "@/contexts/PointsContext";
 import { useUser } from "@/contexts/UserContext";
+import { Link } from "react-router-dom";
 
 const Rewards = () => {
   const { totalPoints, addPoints } = usePoints();
   const { userProfile } = useUser();
   const firstName = userProfile.name.split(" ")[0];
-  const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [claimedReward, setClaimedReward] = useState(false);
   const [showRewardCard, setShowRewardCard] = useState(true);
 
@@ -30,15 +30,16 @@ const Rewards = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">Rewards & Progress</h1>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setShowLeaderboard(!showLeaderboard)}
-            className="flex items-center gap-2"
-          >
-            <Users className="h-4 w-4" />
-            Leaderboard
-          </Button>
+          <Link to="/leaderboard">
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-2"
+            >
+              <Users className="h-4 w-4" />
+              Leaderboard
+            </Button>
+          </Link>
         </div>
 
         {/* Monthly Goal Progress */}
@@ -114,85 +115,6 @@ const Rewards = () => {
                 {claimedReward ? "✓ Reward Claimed!" : "Claim Reward"}
               </Button>
             </Card>
-          </motion.div>
-        )}
-
-        {/* Leaderboard */}
-        {showLeaderboard && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="space-y-3"
-          >
-            <h2 className="text-lg font-semibold flex items-center gap-2">
-              <Award className="h-5 w-5" />
-              Leaderboard
-            </h2>
-            <div className="space-y-2">
-              {[
-                {
-                  name: firstName,
-                  score: totalPoints,
-                  rank: 1,
-                  isCurrentUser: true,
-                },
-                { name: "Rohan", score: 1620, rank: 2, isCurrentUser: false },
-                { name: "Meena", score: 1450, rank: 3, isCurrentUser: false },
-                { name: "Arjun", score: 1280, rank: 4, isCurrentUser: false },
-              ].map((user, idx) => (
-                <motion.div
-                  key={user.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: idx * 0.1 }}
-                >
-                  <Card
-                    className={`p-4 ${
-                      user.isCurrentUser
-                        ? "bg-primary/10 border-primary/30 ring-2 ring-primary/20"
-                        : "hover:bg-muted/50"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                            user.rank === 1
-                              ? "bg-yellow-500 text-white"
-                              : user.rank === 2
-                              ? "bg-gray-400 text-white"
-                              : user.rank === 3
-                              ? "bg-orange-500 text-white"
-                              : "bg-muted text-muted-foreground"
-                          }`}
-                        >
-                          {user.rank}
-                        </div>
-                        <div>
-                          <p
-                            className={`font-medium ${
-                              user.isCurrentUser ? "text-primary" : ""
-                            }`}
-                          >
-                            {user.name} {user.isCurrentUser && "(You)"}
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            {user.score} points
-                          </p>
-                        </div>
-                      </div>
-                      {user.isCurrentUser && (
-                        <div className="p-2 bg-primary/20 rounded-full">
-                          <Trophy className="h-4 w-4 text-primary" />
-                        </div>
-                      )}
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         )}
 

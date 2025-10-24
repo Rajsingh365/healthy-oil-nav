@@ -275,6 +275,7 @@ const Profile = () => {
             </div>
             <DialogFooter>
               <Button
+                className="mt-3"
                 variant="outline"
                 onClick={() => setIsEditDialogOpen(false)}
               >

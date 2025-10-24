@@ -1,5 +1,6 @@
 import { MobileLayout } from "@/components/layout/MobileLayout";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import {
   Select,
@@ -8,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Bell, Globe, Palette, Info } from "lucide-react";
+import { Bell, Globe, Palette, Info, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { useState } from "react";
@@ -23,9 +24,11 @@ const Settings = () => {
   return (
     <MobileLayout>
       <div className="space-y-6">
-        <div className="flex items-center gap-4">
-          <Link to="/" className="text-muted-foreground hover:text-foreground">
-            ←
+        <div className="flex items-center gap-3">
+          <Link to="/">
+            <Button variant="ghost" size="icon">
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
           </Link>
           <h1 className="text-2xl font-bold">Settings</h1>
         </div>
@@ -54,7 +57,7 @@ const Settings = () => {
                 onCheckedChange={setNotificationsEnabled}
               />
             </div>
-                        {/* Daily Reminders */}
+            {/* Daily Reminders */}
             <div className="p-4 flex items-center justify-between border-b border-border">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-muted rounded-full">
@@ -120,8 +123,6 @@ const Settings = () => {
               </Select>
             </div>
 
-            
-
             {/* Language */}
             <div className="p-4 flex items-center justify-between border-b border-border">
               <div className="flex items-center gap-3">
@@ -145,8 +146,6 @@ const Settings = () => {
                 </SelectContent>
               </Select>
             </div>
-
-
           </Card>
         </div>
         {/* About */}

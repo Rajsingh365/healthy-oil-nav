@@ -1,15 +1,18 @@
 import { MobileLayout } from "@/components/layout/MobileLayout";
 import { Card } from "@/components/ui/card";
-import { Droplet, Target, Users, TrendingUp } from "lucide-react";
+import { Droplet, Target, Users, TrendingUp, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const About = () => {
   return (
     <MobileLayout>
       <div className="space-y-6">
-        <div className="flex items-center gap-4">
-          <Link to="/" className="text-muted-foreground hover:text-foreground">
-            ←
+        <div className="flex items-center gap-3">
+          <Link to="/">
+            <Button variant="ghost" size="icon">
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
           </Link>
           <h1 className="text-2xl font-bold">About HealthyOil</h1>
         </div>
@@ -25,7 +28,8 @@ const About = () => {
             </div>
           </div>
           <p className="text-muted-foreground">
-            Your companion for tracking and reducing cooking oil consumption for a healthier lifestyle.
+            Your companion for tracking and reducing cooking oil consumption for
+            a healthier lifestyle.
           </p>
         </Card>
 
@@ -33,8 +37,9 @@ const About = () => {
           <h2 className="text-lg font-semibold">Our Mission</h2>
           <Card className="p-5">
             <p className="text-muted-foreground leading-relaxed">
-              HealthyOil helps Indian families monitor their cooking oil usage, promote healthier eating 
-              habits, and reduce excessive oil consumption through smart tracking and personalized insights.
+              HealthyOil helps Indian families monitor their cooking oil usage,
+              promote healthier eating habits, and reduce excessive oil
+              consumption through smart tracking and personalized insights.
             </p>
           </Card>
         </div>
@@ -66,7 +71,9 @@ const About = () => {
                   </div>
                   <div>
                     <h3 className="font-medium mb-1">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {feature.desc}
+                    </p>
                   </div>
                 </div>
               </Card>

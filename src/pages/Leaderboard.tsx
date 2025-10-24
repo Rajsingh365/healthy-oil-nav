@@ -217,7 +217,7 @@ const Leaderboard = () => {
             <p className="text-sm text-muted-foreground">Your Rank</p>
           </Card>
           <Card className="p-4 text-center">
-            <div className="text-2xl font-bold text-secondary">1,850</div>
+            <div className="text-2xl font-bold text-secondary">{totalPoints}</div>
             <p className="text-sm text-muted-foreground">Total Points</p>
           </Card>
         </motion.div>

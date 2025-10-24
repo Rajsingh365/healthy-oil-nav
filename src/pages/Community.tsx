@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { Input } from "@/components/ui/input";
 
 type Post = {
   id: string;
@@ -57,6 +58,10 @@ const Community = () => {
   const [newPostText, setNewPostText] = useState("");
   const [newPostImage, setNewPostImage] = useState<string | null>(null);
   const observerRef = useRef<HTMLDivElement>(null);
+  const [commentOpen, setCommentOpen] = useState<Record<string, boolean>>({});
+  const [commentInputs, setCommentInputs] = useState<Record<string, string>>(
+    {}
+  );
 
   const dummyPosts: Post[] = [
     {
@@ -212,6 +217,50 @@ const Community = () => {
     );
   };
 
+  const toggleCommentComposer = (postId: string) => {
+    setCommentOpen((prev) => ({ ...prev, [postId]: !prev[postId] }));
+    // focus existing input if opening
+    if (!commentOpen[postId]) {
+      setTimeout(() => {
+        const el = document.getElementById(
+          `comment-input-${postId}`
+        ) as HTMLInputElement | null;
+        el?.focus();
+      }, 120);
+    }
+  };
+
+  const setCommentInput = (postId: string, value: string) => {
+    setCommentInputs((prev) => ({ ...prev, [postId]: value }));
+  };
+
+  const handlePostComment = (postId: string) => {
+    const text = (commentInputs[postId] || "").trim();
+    if (!text) return;
+
+    const newComment: Comment = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      author: "You",
+      text,
+      timestamp: Date.now(),
+    };
+
+    setPosts((prev) =>
+      prev.map((post) =>
+        post.id === postId
+          ? {
+              ...post,
+              comments: [...post.comments, newComment],
+              stats: { ...post.stats, comments: post.stats.comments + 1 },
+            }
+          : post
+      )
+    );
+
+    // clear input
+    setCommentInputs((prev) => ({ ...prev, [postId]: "" }));
+  };
+
   const handleCreatePost = () => {
     if (!newPostText.trim()) return;
 
@@ -302,6 +351,7 @@ const Community = () => {
                 animate={{ y: 0 }}
                 exit={{ y: "100%" }}
                 className="bg-card rounded-t-xl w-full max-h-[80vh] overflow-y-auto"
+                style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
               >
                 <div className="p-4 space-y-4">
                   <div className="flex items-center justify-between">
@@ -343,7 +393,13 @@ const Community = () => {
                       🎥 Video
                     </Button>
                   </div>
+                </div>
 
+                {/* Sticky footer for Share Post button so it stays visible above keyboard/safe area */}
+                <div
+                  className="sticky bottom-0 bg-card p-4"
+                  style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+                >
                   <Button
                     onClick={handleCreatePost}
                     disabled={!newPostText.trim()}
@@ -449,6 +505,9 @@ const Community = () => {
                       variant="ghost"
                       size="sm"
                       className="flex items-center gap-1 text-muted-foreground"
+                      onClick={() => toggleCommentComposer(post.id)}
+                      aria-expanded={!!commentOpen[post.id]}
+                      aria-controls={`comments-${post.id}`}
                     >
                       <MessageCircle className="h-4 w-4" />
                       <span className="text-sm">{post.stats.comments}</span>
@@ -465,11 +524,10 @@ const Community = () => {
                     </Button>
                   </div>
                 </div>
-
-                {/* Comments */}
-                {post.comments.length > 0 && (
-                  <div className="mt-3 space-y-2">
-                    {post.comments.slice(0, 2).map((comment) => (
+                {/* Comments list */}
+                <div id={`comments-${post.id}`} className="mt-3 space-y-2">
+                  {post.comments.length > 0 ? (
+                    post.comments.slice(-3).map((comment) => (
                       <div key={comment.id} className="flex items-start gap-2">
                         <Avatar className="h-6 w-6">
                           <AvatarFallback className="text-xs">
@@ -485,14 +543,40 @@ const Community = () => {
                           </p>
                         </div>
                       </div>
-                    ))}
-                    {post.comments.length > 2 && (
-                      <p className="text-xs text-muted-foreground">
-                        View {post.comments.length - 2} more comments
-                      </p>
-                    )}
-                  </div>
-                )}
+                    ))
+                  ) : (
+                    <p className="text-xs text-muted-foreground">
+                      Be the first to comment
+                    </p>
+                  )}
+
+                  {/* Comment composer (visible when toggled) */}
+                  {commentOpen[post.id] && (
+                    <div className="mt-2 flex items-center gap-2">
+                      <Input
+                        id={`comment-input-${post.id}`}
+                        placeholder="Write a comment..."
+                        value={commentInputs[post.id] || ""}
+                        onChange={(e) =>
+                          setCommentInput(post.id, e.target.value)
+                        }
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            handlePostComment(post.id);
+                          }
+                        }}
+                      />
+                      <Button
+                        onClick={() => handlePostComment(post.id)}
+                        disabled={!(commentInputs[post.id] || "").trim()}
+                        size="sm"
+                      >
+                        Post
+                      </Button>
+                    </div>
+                  )}
+                </div>
               </Card>
             </motion.div>
           ))}

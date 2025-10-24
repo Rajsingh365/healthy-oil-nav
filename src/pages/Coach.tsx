@@ -19,6 +19,15 @@ const COACH_NAME = "AarogyaBuddy";
 const randomFrom = (arr: string[]) =>
   arr[Math.floor(Math.random() * arr.length)];
 
+// safe id generator: prefer crypto.randomUUID when available, fallback to time+random
+const genId = () => {
+  try {
+    if (typeof crypto !== "undefined" && typeof (crypto as any).randomUUID === "function") {
+      return (crypto as any).randomUUID();
+    }
+  } catch {}
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
+};
 const Coach = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -58,19 +67,19 @@ const Coach = () => {
       // preload sample conversation
       setMessages([
         {
-          id: crypto.randomUUID(),
+          id: genId(),
           role: "coach",
           text: `Hi! I'm ${COACH_NAME} — your friendly health buddy. How can I help today?`,
           timestamp: Date.now(),
         },
         {
-          id: crypto.randomUUID(),
+          id: genId(),
           role: "user",
           text: "I ate fried pakoras today 😅",
           timestamp: Date.now(),
         },
         {
-          id: crypto.randomUUID(),
+          id: genId(),
           role: "coach",
           text: "No worries, Rajesh! Maybe try air frying next time 💡",
           timestamp: Date.now(),
@@ -108,15 +117,15 @@ const Coach = () => {
   const respond = (prompt: string) => {
     setIsTyping(true);
     // add user message
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: crypto.randomUUID(),
-        role: "user",
-        text: prompt,
-        timestamp: Date.now(),
-      },
-    ]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: genId(),
+          role: "user",
+          text: prompt,
+          timestamp: Date.now(),
+        },
+      ]);
 
     // coach typing delay
     setTimeout(() => {
@@ -124,7 +133,7 @@ const Coach = () => {
       setMessages((prev) => [
         ...prev,
         {
-          id: crypto.randomUUID(),
+          id: genId(),
           role: "coach",
           text: `${reply}`,
           timestamp: Date.now(),
@@ -152,7 +161,7 @@ const Coach = () => {
         setMessages((prev) => [
           ...prev,
           {
-            id: crypto.randomUUID(),
+            id: genId(),
             role: "nudge",
             text: randomFrom(nudges),
             timestamp: Date.now(),
