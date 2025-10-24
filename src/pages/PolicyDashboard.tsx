@@ -1,4 +1,4 @@
-import { MobileLayout } from "@/components/layout/MobileLayout";
+import { PolicyMobileLayout } from "@/components/layout/PolicyMobileLayout";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -65,7 +65,7 @@ const PolicyDashboard = () => {
   ];
 
   return (
-    <MobileLayout>
+    <PolicyMobileLayout>
       <div className="space-y-6">
         <div className="text-center space-y-2">
           <h1 className="text-2xl font-bold">📊 Policy Dashboard</h1>
@@ -266,7 +266,7 @@ const PolicyDashboard = () => {
           </Card>
         </motion.div>
       </div>
-    </MobileLayout>
+    </PolicyMobileLayout>
   );
 };
 

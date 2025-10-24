@@ -1,4 +1,3 @@
-import { MobileLayout } from "@/components/layout/MobileLayout";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -58,72 +57,81 @@ const Register = () => {
     }
 
     const created = res.user!;
-    if (created.role === "partner") navigate("/partnerships");
+    if (created.role === "partner") navigate("/partner-dashboard");
     else if (created.role === "policymaker") navigate("/policy-dashboard");
     else navigate("/");
   };
 
   return (
-    <MobileLayout>
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Card className="w-full max-w-md p-6">
-          <h2 className="text-xl font-semibold mb-2">Create an account</h2>
-          <p className="text-sm text-muted-foreground mb-4">
-            Sign up with your email and choose a role
-          </p>
+    <div
+      className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat relative"
+      style={{ backgroundImage: "url('/bg-image.jpg')" }}
+    >
+      {/* Overlay for better contrast */}
+      <div className="absolute inset-0 bg-background/30 backdrop-blur-sm" />
 
-          <form onSubmit={onSubmit} className="space-y-3">
-            <Input
-              placeholder="Full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <Input
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+      <Card className="w-full max-w-md p-6 relative z-10 bg-background/80 backdrop-blur-md border-2 shadow-2xl">
+        <div className="flex justify-center mb-6">
+          <img src="/logo.png" alt="EatWise Logo" className="h-20 w-auto" />
+        </div>
+        <h2 className="text-xl font-semibold mb-2 text-center">
+          Create an account
+        </h2>
+        <p className="text-sm text-muted-foreground mb-4 text-center">
+          Sign up with your email and choose a role
+        </p>
 
-            <div>
-              <Select
-                value={role}
-                onValueChange={(v) => setRole(v as StoredUser["role"])}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="user">User</SelectItem>
-                  <SelectItem value="partner">Partner</SelectItem>
-                  <SelectItem value="policymaker">Policy maker</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+        <form onSubmit={onSubmit} className="space-y-3">
+          <Input
+            placeholder="Full name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Input
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            placeholder="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-            {error && <p className="text-sm text-destructive">{error}</p>}
-
-            <Button type="submit" className="w-full">
-              Register
-            </Button>
-          </form>
-
-          <div className="mt-4 text-sm text-muted-foreground">
-            <p>
-              Already have an account?{" "}
-              <Link to="/login" className="text-primary">
-                Sign in
-              </Link>
-            </p>
+          <div>
+            <Select
+              value={role}
+              onValueChange={(v) => setRole(v as StoredUser["role"])}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="user">User</SelectItem>
+                <SelectItem value="partner">Partner</SelectItem>
+                <SelectItem value="policymaker">Policy maker</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
-        </Card>
-      </div>
-    </MobileLayout>
+
+          {error && <p className="text-sm text-destructive">{error}</p>}
+
+          <Button type="submit" className="w-full">
+            Register
+          </Button>
+        </form>
+
+        <div className="mt-4 text-sm text-muted-foreground">
+          <p>
+            Already have an account?{" "}
+            <Link to="/login" className="text-primary">
+              Sign in
+            </Link>
+          </p>
+        </div>
+      </Card>
+    </div>
   );
 };
 

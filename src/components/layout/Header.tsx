@@ -10,6 +10,7 @@ import {
   Settings,
   Info,
   HelpCircle,
+  LogOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,10 +21,18 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useTheme } from "next-themes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "@/contexts/UserContext";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
+  const { logout } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card border-b border-border h-14">
@@ -75,13 +84,13 @@ export const Header = () => {
                   <Handshake className="h-4 w-4" />
                   Partnerships
                 </Link>
-                <Link
+                {/* <Link
                   to="/policy-dashboard"
                   className="text-foreground hover:text-primary transition-colors py-2 flex items-center gap-2"
                 >
                   <BarChart3 className="h-4 w-4" />
                   Policy Dashboard
-                </Link>
+                </Link> */}
                 <Link
                   to="/learn"
                   className="text-foreground hover:text-primary transition-colors py-2 flex items-center gap-2"
@@ -110,6 +119,14 @@ export const Header = () => {
                   <HelpCircle className="h-4 w-4" />
                   Help
                 </Link>
+                <div className="border-t border-border my-2"></div>
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left text-foreground hover:text-primary transition-colors py-2 flex items-center gap-2 cursor-pointer bg-transparent border-none"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Logout
+                </button>
               </nav>
             </SheetContent>
           </Sheet>

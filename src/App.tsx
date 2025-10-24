@@ -6,24 +6,36 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { PointsProvider } from "./contexts/PointsContext";
 import { UserProvider } from "./contexts/UserContext";
-import Home from "./pages/Home";
-import Tracker from "./pages/Tracker";
-import Rewards from "./pages/Rewards";
-import Leaderboard from "./pages/Leaderboard";
-import Profile from "./pages/Profile";
-import Streaks from "./pages/Streaks";
-import Learn from "./pages/Learn";
-import Settings from "./pages/Settings";
-import Partnerships from "./pages/Partnerships";
+import Home from "./pages/user/Home";
+import Tracker from "./pages/user/Tracker";
+import Rewards from "./pages/user/Rewards";
+import Leaderboard from "./pages/user/Leaderboard";
+import Profile from "./pages/user/Profile";
+import Streaks from "./pages/user/Streaks";
+import Learn from "./pages/user/Learn";
+import Settings from "./pages/user/Settings";
+import Partnerships from "./pages/user/Partnerships";
 import PolicyDashboard from "./pages/PolicyDashboard";
-import AIAnalyzer from "./pages/AIAnalyzer";
-import Coach from "./pages/Coach";
-import Community from "./pages/Community";
+import PolicyAnalytics from "./pages/policy/PolicyAnalytics";
+import PolicyReports from "./pages/policy/PolicyReports";
+import PolicyInsights from "./pages/policy/PolicyInsights";
+import CampaignManagement from "./pages/policy/CampaignManagement";
+import ImpactReports from "./pages/policy/ImpactReports";
+import PartnerOverview from "./pages/partner/PartnerOverview";
+import PartnerCertification from "./pages/partner/PartnerCertification";
+import PartnerSelfAudit from "./pages/partner/PartnerSelfAudit";
+import PartnerRewards from "./pages/partner/PartnerRewards";
+import PartnerMenuLabeling from "./pages/partner/PartnerMenuLabeling";
+import PartnerSelfAuditDashboard from "./pages/partner/PartnerSelfAuditDashboard";
+import AIAnalyzer from "./pages/user/AIAnalyzer";
+import Coach from "./pages/user/Coach";
+import Community from "./pages/user/Community";
 import About from "./pages/About";
-import Help from "./pages/Help";
+import Help from "./pages/user/Help";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -37,21 +49,200 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/tracker" element={<Tracker />} />
-                <Route path="/rewards" element={<Rewards />} />
-                <Route path="/leaderboard" element={<Leaderboard />} />
-                <Route path="/coach" element={<Coach />} />
-                <Route path="/community" element={<Community />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/streaks" element={<Streaks />} />
-                <Route path="/learn" element={<Learn />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/partnerships" element={<Partnerships />} />
-                <Route path="/policy-dashboard" element={<PolicyDashboard />} />
-                <Route path="/ai-analyzer" element={<AIAnalyzer />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <Home />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/tracker"
+                  element={
+                    <ProtectedRoute>
+                      <Tracker />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/rewards"
+                  element={
+                    <ProtectedRoute>
+                      <Rewards />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/leaderboard"
+                  element={
+                    <ProtectedRoute>
+                      <Leaderboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/coach"
+                  element={
+                    <ProtectedRoute>
+                      <Coach />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/community"
+                  element={
+                    <ProtectedRoute>
+                      <Community />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/streaks"
+                  element={
+                    <ProtectedRoute>
+                      <Streaks />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/learn"
+                  element={
+                    <ProtectedRoute>
+                      <Learn />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <ProtectedRoute>
+                      <Settings />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/partnerships"
+                  element={
+                    <ProtectedRoute>
+                      <Partnerships />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/policy-dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <PolicyDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/policy-analytics"
+                  element={
+                    <ProtectedRoute>
+                      <PolicyAnalytics />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/policy-reports"
+                  element={
+                    <ProtectedRoute>
+                      <PolicyReports />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/policy-insights"
+                  element={
+                    <ProtectedRoute>
+                      <PolicyInsights />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/policy-campaigns"
+                  element={
+                    <ProtectedRoute>
+                      <CampaignManagement />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/policy-impact"
+                  element={
+                    <ProtectedRoute>
+                      <ImpactReports />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/partner-dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <PartnerOverview />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/partner-certification"
+                  element={
+                    <ProtectedRoute>
+                      <PartnerCertification />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/partner-self-audit"
+                  element={
+                    <ProtectedRoute>
+                      <PartnerSelfAudit />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/partner-rewards"
+                  element={
+                    <ProtectedRoute>
+                      <PartnerRewards />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/partner-menu"
+                  element={
+                    <ProtectedRoute>
+                      <PartnerMenuLabeling />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/partner-audit-dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <PartnerSelfAuditDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/ai-analyzer"
+                  element={
+                    <ProtectedRoute>
+                      <AIAnalyzer />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route path="/about" element={<About />} />
                 <Route path="/help" element={<Help />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
