@@ -13,11 +13,16 @@ import { Bell, Globe, Palette, Info, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { useState } from "react";
+import {
+  useLanguage,
+  LANGUAGE_NAMES,
+  type Language,
+} from "@/contexts/LanguageContext";
 
 const Settings = () => {
   const { theme, setTheme } = useTheme();
+  const { language, setLanguage } = useLanguage();
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [language, setLanguage] = useState("en");
   const [dailyReminders, setDailyReminders] = useState(true);
   const [weeklyReports, setWeeklyReports] = useState(true);
 
@@ -136,13 +141,19 @@ const Settings = () => {
                   </p>
                 </div>
               </div>
-              <Select value={language} onValueChange={setLanguage}>
-                <SelectTrigger className="w-32">
+              <Select
+                value={language}
+                onValueChange={(v) => setLanguage(v as Language)}
+              >
+                <SelectTrigger className="w-40">
                   <SelectValue placeholder="Select language" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="en">English</SelectItem>
-                  <SelectItem value="hi">Hindi</SelectItem>
+                  {Object.entries(LANGUAGE_NAMES).map(([code, name]) => (
+                    <SelectItem key={code} value={code}>
+                      {name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>

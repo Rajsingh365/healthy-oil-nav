@@ -11,17 +11,20 @@ import {
 } from "@/components/ui/carousel";
 import { Link } from "react-router-dom";
 import { useUser } from "@/contexts/UserContext";
-
-const awarenessMessages = [
-  "Cut down oil, lift up health 💪",
-  "Try mustard oil instead of palm oil 🌿",
-  "Small changes, big health benefits 🌟",
-  "Your heart thanks you for less oil ❤️",
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import { homeTranslations } from "@/translations/home";
 
 const Home = () => {
   const { userProfile } = useUser();
+  const { t } = useLanguage();
   const firstName = userProfile?.name?.split(" ")[0] || "User";
+
+  const awarenessMessages = [
+    t("awareness1", homeTranslations.awareness1),
+    t("awareness2", homeTranslations.awareness2),
+    t("awareness3", homeTranslations.awareness3),
+    t("awareness4", homeTranslations.awareness4),
+  ];
 
   return (
     <MobileLayout>
@@ -50,11 +53,11 @@ const Home = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground mb-1">
-                Today's Summary
+                {t("todaySummary", homeTranslations.todaySummary)}
               </p>
               <p className="text-3xl font-bold text-foreground">20ml</p>
               <p className="text-sm text-muted-foreground mt-1">
-                Oil used so far
+                {t("oilUsedSoFar", homeTranslations.oilUsedSoFar)}
               </p>
             </div>
             <div className="text-5xl">🥗</div>
@@ -63,9 +66,11 @@ const Home = () => {
 
         {/* Welcome Section */}
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold">Welcome {firstName} 👋</h1>
+          <h1 className="text-3xl font-bold">
+            {t("welcome", homeTranslations.welcome)} {firstName} 👋
+          </h1>
           <p className="text-muted-foreground">
-            Track your healthy oil usage and earn rewards!
+            {t("trackRewards", homeTranslations.trackRewards)}
           </p>
         </div>
 
@@ -74,9 +79,13 @@ const Home = () => {
           <Card className="p-6 bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
             <div className="flex items-start justify-between">
               <div className="space-y-1">
-                <p className="text-sm text-muted-foreground">This Month</p>
+                <p className="text-sm text-muted-foreground">
+                  {t("thisMonth", homeTranslations.thisMonth)}
+                </p>
                 <p className="text-3xl font-bold text-primary">2.5L</p>
-                <p className="text-xs text-muted-foreground">Oil used</p>
+                <p className="text-xs text-muted-foreground">
+                  {t("oilUsed", homeTranslations.oilUsed)}
+                </p>
               </div>
               <div className="p-3 bg-primary/10 rounded-full">
                 <Droplet className="h-6 w-6 text-primary" />
@@ -88,35 +97,49 @@ const Home = () => {
             <Card className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingDown className="h-4 w-4 text-success" />
-                <p className="text-xs text-muted-foreground">Reduced</p>
+                <p className="text-xs text-muted-foreground">
+                  {t("reduced", homeTranslations.reduced)}
+                </p>
               </div>
               <p className="text-2xl font-bold">15%</p>
-              <p className="text-xs text-muted-foreground">vs last month</p>
+              <p className="text-xs text-muted-foreground">
+                {t("vsLastMonth", homeTranslations.vsLastMonth)}
+              </p>
             </Card>
 
             <Card className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="h-4 w-4 text-secondary" />
-                <p className="text-xs text-muted-foreground">Goal</p>
+                <p className="text-xs text-muted-foreground">
+                  {t("goal", homeTranslations.goal)}
+                </p>
               </div>
               <p className="text-2xl font-bold">3L</p>
-              <p className="text-xs text-muted-foreground">monthly target</p>
+              <p className="text-xs text-muted-foreground">
+                {t("monthlyTarget", homeTranslations.monthlyTarget)}
+              </p>
             </Card>
           </div>
         </div>
 
         {/* Quick Actions */}
         <div className="space-y-3">
-          <h2 className="text-lg font-semibold">Quick Actions</h2>
+          <h2 className="text-lg font-semibold">
+            {t("quickActions", homeTranslations.quickActions)}
+          </h2>
           <div className="grid grid-cols-2 gap-3">
             <Link to="/tracker">
               <Card className="p-4 text-center cursor-pointer hover:bg-accent transition-colors">
-                <p className="font-medium">Log Usage</p>
+                <p className="font-medium">
+                  {t("logUsage", homeTranslations.logUsage)}
+                </p>
               </Card>
             </Link>
             <Link to="/learn">
               <Card className="p-4 text-center cursor-pointer hover:bg-accent transition-colors">
-                <p className="font-medium">View Tips</p>
+                <p className="font-medium">
+                  {t("viewTips", homeTranslations.viewTips)}
+                </p>
               </Card>
             </Link>
           </div>
@@ -126,7 +149,7 @@ const Home = () => {
             <Link to="/ai-analyzer">
               <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-4 text-lg">
                 <Camera className="h-5 w-5 mr-2" />
-                Capture Meal
+                {t("captureMeal", homeTranslations.captureMeal)}
               </Button>
             </Link>
           </div>
@@ -134,23 +157,29 @@ const Home = () => {
 
         {/* Recent Activity */}
         <div className="space-y-3">
-          <h2 className="text-lg font-semibold">Recent Activity</h2>
+          <h2 className="text-lg font-semibold">
+            {t("recentActivity", homeTranslations.recentActivity)}
+          </h2>
           <Card className="p-4">
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="font-medium">Cooking Oil</p>
+                  <p className="font-medium">
+                    {t("cookingOil", homeTranslations.cookingOil)}
+                  </p>
                   <p className="text-xs text-muted-foreground">
-                    Today, 7:30 AM
+                    {t("today", homeTranslations.today)}, 7:30 AM
                   </p>
                 </div>
                 <p className="font-semibold text-primary">50ml</p>
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="font-medium">Cooking Oil</p>
+                  <p className="font-medium">
+                    {t("cookingOil", homeTranslations.cookingOil)}
+                  </p>
                   <p className="text-xs text-muted-foreground">
-                    Yesterday, 8:15 PM
+                    {t("yesterday", homeTranslations.yesterday)}, 8:15 PM
                   </p>
                 </div>
                 <p className="font-semibold text-primary">75ml</p>
