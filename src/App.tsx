@@ -21,6 +21,8 @@ import Coach from "./pages/Coach";
 import Community from "./pages/Community";
 import About from "./pages/About";
 import Help from "./pages/Help";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -48,6 +50,8 @@ const App = () => (
                 <Route path="/partnerships" element={<Partnerships />} />
                 <Route path="/policy-dashboard" element={<PolicyDashboard />} />
                 <Route path="/ai-analyzer" element={<AIAnalyzer />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/help" element={<Help />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
