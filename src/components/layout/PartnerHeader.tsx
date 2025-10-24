@@ -68,7 +68,7 @@ export const PartnerHeader = () => {
             )}
           </button>
           <div className="flex flex-col leading-tight">
-            <span className="font-semibold">Healthy Oil</span>
+            <span className="font-semibold">EatWise</span>
             <span className="text-xs text-muted-foreground">
               Partner Portal
             </span>

@@ -166,7 +166,7 @@ const Settings = () => {
               <Info className="h-4 w-4 text-muted-foreground" />
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium">HealthyOil</p>
+              <p className="text-sm font-medium">EatWise</p>
               <p className="text-xs text-muted-foreground">Version 1.0.0</p>
               <p className="text-sm text-muted-foreground">
                 Our mission is to help Indian households reduce excessive oil

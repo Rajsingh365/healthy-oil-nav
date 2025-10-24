@@ -12,7 +12,7 @@ const Partnerships = () => {
       location: "Mumbai, Maharashtra",
       rating: 4.8,
       cuisine: "North Indian",
-      certification: "Healthy Oil Certified 🏅",
+      certification: "EatWise Certified 🏅",
       description: "Traditional tandoor cooking with minimal oil usage",
       timings: "11:00 AM - 11:00 PM",
       phone: "+91 98765 43210",
@@ -24,7 +24,7 @@ const Partnerships = () => {
       location: "Delhi, NCR",
       rating: 4.6,
       cuisine: "Punjabi",
-      certification: "Healthy Oil Certified 🏅",
+      certification: "EatWise Certified 🏅",
       description: "Authentic Punjabi flavors with reduced oil cooking",
       timings: "10:00 AM - 10:30 PM",
       phone: "+91 98765 43211",
@@ -36,7 +36,7 @@ const Partnerships = () => {
       location: "Chennai, Tamil Nadu",
       rating: 4.9,
       cuisine: "South Indian",
-      certification: "Healthy Oil Certified 🏅",
+      certification: "EatWise Certified 🏅",
       description:
         "Traditional South Indian breakfast with healthy cooking methods",
       timings: "6:00 AM - 2:00 PM",
@@ -65,7 +65,7 @@ const Partnerships = () => {
             <div className="text-center space-y-3">
               <div className="text-4xl">🏅</div>
               <h2 className="text-lg font-semibold text-green-700 dark:text-green-400">
-                Healthy Oil Certified
+                EatWise Certified
               </h2>
               <p className="text-sm text-muted-foreground">
                 These restaurants have committed to using 30% less oil in their
@@ -169,11 +169,11 @@ const Partnerships = () => {
               Want to Partner with Us?
             </h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Join our network of healthy oil certified restaurants and help
-              promote healthier cooking practices across India.
+              Join our network of certified restaurants and help promote
+              healthier cooking practices across India.
             </p>
             <div className="text-xs text-muted-foreground">
-              Contact: partnerships@healthyoil.in
+              Contact: partnerships@eatwise.app
             </div>
           </Card>
         </motion.div>

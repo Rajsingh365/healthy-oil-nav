@@ -98,7 +98,7 @@ const Help = () => {
               <div>
                 <p className="font-medium">Email Support</p>
                 <p className="text-xs text-muted-foreground">
-                  support@healthyoil.app
+                  support@eatwise.app
                 </p>
               </div>
             </Card>

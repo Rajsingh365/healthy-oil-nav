@@ -13,7 +13,7 @@ type ChatMessage = {
   timestamp: number;
 };
 
-const STORAGE_KEY = "healthyoil_coach_chat";
+const STORAGE_KEY = "eatwise_coach_chat";
 const COACH_NAME = "AarogyaBuddy";
 
 const randomFrom = (arr: string[]) =>
@@ -22,7 +22,10 @@ const randomFrom = (arr: string[]) =>
 // safe id generator: prefer crypto.randomUUID when available, fallback to time+random
 const genId = () => {
   try {
-    if (typeof crypto !== "undefined" && typeof (crypto as any).randomUUID === "function") {
+    if (
+      typeof crypto !== "undefined" &&
+      typeof (crypto as any).randomUUID === "function"
+    ) {
       return (crypto as any).randomUUID();
     }
   } catch {}
@@ -117,15 +120,15 @@ const Coach = () => {
   const respond = (prompt: string) => {
     setIsTyping(true);
     // add user message
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: genId(),
-          role: "user",
-          text: prompt,
-          timestamp: Date.now(),
-        },
-      ]);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: genId(),
+        role: "user",
+        text: prompt,
+        timestamp: Date.now(),
+      },
+    ]);
 
     // coach typing delay
     setTimeout(() => {
