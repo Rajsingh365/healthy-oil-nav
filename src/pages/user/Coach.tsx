@@ -48,11 +48,11 @@ const Coach = () => {
   );
 
   const coachResponses: string[] = [
-    "No worries! Maybe try air frying next time 💡",
-    "Great job staying aware! Consider steaming today 🫖",
-    "Small steps count. Can you reduce a spoon of oil this meal? 🥄",
+    // "No worries! Maybe try air frying next time 💡",
+    // "Great job staying aware! Consider steaming today 🫖",
+    // "Small steps count. Can you reduce a spoon of oil this meal? 🥄",
     "Try mustard oil or olive oil for a healthier swap 🌿",
-    "Add vegetables to balance your plate today 🥦",
+    // "Add vegetables to balance your plate today 🥦",
   ];
 
   const nudges: string[] = [

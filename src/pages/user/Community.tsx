@@ -21,6 +21,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
+import { useUser } from "@/contexts/UserContext";
 
 type Post = {
   id: string;
@@ -184,6 +185,14 @@ const Community = () => {
     setPosts(dummyPosts);
   }, []);
 
+  const { userProfile, currentUser, generateAvatar } = useUser();
+
+  const displayName =
+    userProfile?.name ?? currentUser?.name ?? "You";
+
+  const avatarUrl =
+    userProfile?.avatar ?? (currentUser ? generateAvatar(currentUser.name, "male") : "/placeholder.svg");
+
   const handleLike = (postId: string) => {
     setPosts((prev) =>
       prev.map((post) =>
@@ -267,9 +276,9 @@ const Community = () => {
     const newPost: Post = {
       id: Date.now().toString(),
       author: {
-        name: "Asha Verma",
-        avatar: "/placeholder.svg",
-        verified: true,
+        name: displayName,
+        avatar: avatarUrl,
+        verified: Boolean(currentUser),
       },
       content: {
         text: newPostText,

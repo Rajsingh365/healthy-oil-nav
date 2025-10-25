@@ -13,8 +13,13 @@ type StoredUser = {
 };
 
 const Login = () => {
-  const [email, setEmail] = useState("rajesh.kumar@example.com");
-  const [password, setPassword] = useState("user123");
+  // const [email, setEmail] = useState("rajesh.kumar@example.com");
+  // const [password, setPassword] = useState("user123");
+  // const [email, setEmail] = useState("priya.partner@example.com");
+  // const [password, setPassword] = useState("partner123");
+  const [email, setEmail] = useState("sanjay.policy@example.com");
+  const [password, setPassword] = useState("policy123");
+
   const { login, users, seedDemoUsers } = useUser();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -22,7 +27,7 @@ const Login = () => {
   useEffect(() => {
     // no-op: users are provided by UserContext
   }, []);
-
+ 
   const onSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
     setError(null);

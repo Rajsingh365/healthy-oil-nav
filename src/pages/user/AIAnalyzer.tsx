@@ -16,10 +16,10 @@ const AIAnalyzer = () => {
 
   const healthTips = [
     "Try using less oil while frying!",
-    "Consider steaming or grilling instead!",
-    "Use non-stick cookware to reduce oil needs!",
-    "Try air-frying for crispy results with less oil!",
-    "Add vegetables to reduce oil absorption!",
+    // "Consider steaming or grilling instead!",
+    // "Use non-stick cookware to reduce oil needs!",
+    // "Try air-frying for crispy results with less oil!",
+    // "Add vegetables to reduce oil absorption!",
   ];
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
